@@ -1,5 +1,4 @@
-# Supreme Advertising — static site deployment (Express admin runs via `node server.js` elsewhere).
-# This file overrides Netlify UI build settings (e.g. prisma migrate) that do not apply to this repo.
+# Supreme Advertising — static site + Netlify Functions for /api (admin login & invoicing).
 
 [build]
   command = "npm run build"
@@ -7,8 +6,19 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  NETLIFY = "true"
 
-# SPA-style admin HTML (API routes require the Node server, not Netlify static hosting)
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+  external_node_modules = ["better-sqlite3"]
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+  force = true
+
 [[redirects]]
   from = "/admin"
   to = "/admin/index.html"

@@ -25,11 +25,13 @@
     });
     const data = await res.json().catch(() => ({}));
     if (!res.ok) {
-      if (res.status === 401) throw new Error("Session expired. Please sign in again.");
+      if (res.status === 401 && path !== "/api/login") {
+        throw new Error("Session expired. Please sign in again.");
+      }
       if (res.status === 404) {
         throw new Error(
           data.error ||
-            "API not found. Restart the server (node server.js) so customer features load."
+            "Admin API not found. Redeploy with Netlify Functions and set ADMIN_PASSWORD in site env vars."
         );
       }
       throw new Error(data.error || `Request failed (${res.status})`);
@@ -76,14 +78,22 @@
     try {
       await api("/api/login", {
         method: "POST",
-        body: JSON.stringify({ password: $("#password").value }),
+        body: JSON.stringify({ password: $("#password").value.trim() }),
       });
       $("#password").value = "";
       showApp();
       showView("dashboard");
       await refreshDashboard();
-    } catch {
-      loginError.textContent = "Incorrect password. Please try again.";
+    } catch (err) {
+      const msg = String(err.message || "");
+      if (msg.toLowerCase().includes("invalid password")) {
+        loginError.textContent = "Incorrect password. Please try again.";
+      } else if (msg.includes("404") || msg.includes("Failed to fetch") || msg.includes("not found")) {
+        loginError.textContent =
+          "Cannot reach the admin API. Redeploy the site and set ADMIN_PASSWORD + SESSION_SECRET in Netlify environment variables.";
+      } else {
+        loginError.textContent = msg || "Sign-in failed. Please try again.";
+      }
       loginError.classList.remove("hidden");
     }
   });
