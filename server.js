@@ -10,10 +10,15 @@ const {
   createDocument,
   updateDocument,
   deleteDocument,
+  listCustomers,
+  getCustomer,
+  createCustomer,
+  updateCustomer,
+  deleteCustomer,
   getStats,
   nextDocNumber,
 } = require("./lib/db");
-const company = require("./lib/company");
+const { loadCompany } = require("./lib/company");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -62,7 +67,8 @@ app.get("/api/session", (req, res) => {
 });
 
 app.get("/api/company", requireAuth, (_req, res) => {
-  res.json(company);
+  res.set("Cache-Control", "no-store");
+  res.json(loadCompany());
 });
 
 app.get("/api/stats", requireAuth, (_req, res) => {
@@ -105,6 +111,41 @@ app.put("/api/documents/:id", requireAuth, (req, res) => {
 
 app.delete("/api/documents/:id", requireAuth, (req, res) => {
   const ok = deleteDocument(Number(req.params.id));
+  if (!ok) return res.status(404).json({ error: "Not found" });
+  res.json({ ok: true });
+});
+
+app.get("/api/customers", requireAuth, (req, res) => {
+  res.json(listCustomers({ search: req.query.search || undefined }));
+});
+
+app.get("/api/customers/:id", requireAuth, (req, res) => {
+  const customer = getCustomer(Number(req.params.id));
+  if (!customer) return res.status(404).json({ error: "Not found" });
+  res.json(customer);
+});
+
+app.post("/api/customers", requireAuth, (req, res) => {
+  const name = String(req.body?.name || "").trim();
+  if (!name) return res.status(400).json({ error: "Customer name is required" });
+  try {
+    const customer = createCustomer(req.body);
+    res.status(201).json(customer);
+  } catch (err) {
+    res.status(400).json({ error: err.message || "Could not create customer" });
+  }
+});
+
+app.put("/api/customers/:id", requireAuth, (req, res) => {
+  const name = String(req.body?.name || "").trim();
+  if (!name) return res.status(400).json({ error: "Customer name is required" });
+  const customer = updateCustomer(Number(req.params.id), req.body);
+  if (!customer) return res.status(404).json({ error: "Not found" });
+  res.json(customer);
+});
+
+app.delete("/api/customers/:id", requireAuth, (req, res) => {
+  const ok = deleteCustomer(Number(req.params.id));
   if (!ok) return res.status(404).json({ error: "Not found" });
   res.json({ ok: true });
 });

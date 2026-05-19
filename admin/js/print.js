@@ -1,6 +1,7 @@
 (function () {
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
+  const autoPrint = params.get("print") === "1";
 
   const root = document.getElementById("print-root");
 
@@ -19,6 +20,11 @@
     if (!iso) return "—";
     const d = new Date(iso + "T00:00:00");
     return d.toLocaleDateString("en-LK", { year: "numeric", month: "long", day: "numeric" });
+  }
+
+  function renderCompanyPhones(company) {
+    const numbers = [company.phone, company.phoneSecondary].filter(Boolean);
+    return numbers.map((num) => `<p>Tel: ${escapeHtml(num)}</p>`).join("");
   }
 
   async function load() {
@@ -44,7 +50,7 @@
       const isInvoice = doc.type === "invoice";
       const title = isInvoice ? "Invoice" : "Quotation";
 
-      document.title = `${doc.doc_number} | ${title} | Supreme Advertising`;
+      document.title = `${doc.doc_number} | ${title} | ${company.name}`;
 
       root.innerHTML = `
         <article class="print-page">
@@ -52,7 +58,7 @@
             <div class="print-company">
               <strong>${escapeHtml(company.name)}</strong>
               <p>${escapeHtml(company.address)}</p>
-              <p>Tel: ${escapeHtml(company.phone)}</p>
+              ${renderCompanyPhones(company)}
               <p>${escapeHtml(company.email)}</p>
             </div>
             <div class="print-meta">
@@ -60,9 +66,6 @@
               <table>
                 <tr><td>Number</td><td><strong>${escapeHtml(doc.doc_number)}</strong></td></tr>
                 <tr><td>Date</td><td>${formatDate(doc.issue_date)}</td></tr>
-                ${isInvoice && doc.due_date ? `<tr><td>Due date</td><td>${formatDate(doc.due_date)}</td></tr>` : ""}
-                ${!isInvoice ? `<tr><td>Valid until</td><td>${formatDate(doc.due_date) || "30 days from issue"}</td></tr>` : ""}
-                <tr><td>Status</td><td>${escapeHtml(doc.status)}</td></tr>
               </table>
             </div>
           </header>
@@ -75,12 +78,13 @@
               ${doc.client_phone ? `<p>Tel: ${escapeHtml(doc.client_phone)}</p>` : ""}
               ${doc.client_email ? `<p>${escapeHtml(doc.client_email)}</p>` : ""}
             </div>
-            <div>
-              <h3>From</h3>
-              <p><strong>${escapeHtml(company.name)}</strong></p>
-              <p>${escapeHtml(company.address)}</p>
-            </div>
           </div>
+
+          ${
+            !isInvoice && doc.general_line
+              ? `<p class="print-general-line"><strong>General:</strong> ${escapeHtml(doc.general_line)}</p>`
+              : ""
+          }
 
           <table class="print-items">
             <thead>
@@ -111,7 +115,9 @@
           <div class="print-summary">
             <table>
               <tr><td>Subtotal</td><td>${formatMoney(doc.subtotal)}</td></tr>
+              <tr><td>Discount</td><td>${formatMoney(doc.discount_amount || 0)}</td></tr>
               ${doc.tax_rate > 0 ? `<tr><td>Tax (${doc.tax_rate}%)</td><td>${formatMoney(doc.tax_amount)}</td></tr>` : ""}
+              <tr><td>Advance</td><td>${formatMoney(doc.advance_amount || 0)}</td></tr>
               <tr class="grand-total"><td>Total</td><td>${formatMoney(doc.total)}</td></tr>
             </table>
           </div>
@@ -119,10 +125,14 @@
           ${doc.notes ? `<div class="print-notes"><h3>Notes</h3><p>${escapeHtml(doc.notes).replace(/\n/g, "<br>")}</p></div>` : ""}
 
           <footer class="print-footer">
-            ${isInvoice ? "Please make payment to Supreme Advertising as per agreed terms." : "We look forward to working with you. This quotation is subject to our standard terms."}
+            ${isInvoice ? `Please make payment to ${escapeHtml(company.name)} as per agreed terms.` : "We look forward to working with you. This quotation is subject to our standard terms."}
           </footer>
         </article>
       `;
+
+      if (autoPrint) {
+        requestAnimationFrame(() => window.print());
+      }
     } catch {
       root.innerHTML = "<p>Could not load document. <a href='/admin'>Return to admin</a></p>";
     }

@@ -409,7 +409,7 @@ a {
 
 .totals-box {
   margin-left: auto;
-  width: min(280px, 100%);
+  width: min(320px, 100%);
 }
 
 .totals-box dl {
@@ -437,6 +437,37 @@ a {
 .empty-state {
   padding: 2rem;
   text-align: center;
+  color: var(--ink-soft);
+}
+
+.customer-form-panel {
+  margin-bottom: 1rem;
+  padding: 1.25rem;
+}
+
+.customer-form-panel h2 {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+}
+
+.client-picker-field select {
+  width: 100%;
+  max-width: 28rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font: inherit;
+  background: var(--white);
+}
+
+.client-picker-field {
+  margin-bottom: 1rem;
+}
+
+.field-hint {
+  margin: 0.35rem 0 0;
+  font-size: 0.8rem;
   color: var(--ink-soft);
 }
 

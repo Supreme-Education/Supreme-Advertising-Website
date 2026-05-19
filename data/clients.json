@@ -1,0 +1,14 @@
+[
+  { "name": "DSI Tyres", "logo": "assets/images/clients/dsi-tyres.png" },
+  { "name": "DSI Bike", "logo": "assets/images/clients/dsi-bike.png" },
+  { "name": "DSI Plastic", "logo": "assets/images/clients/dsi-plastic.png" },
+  { "name": "NIBM", "logo": "assets/images/clients/nibm.png" },
+  { "name": "Mount Spring", "logo": "assets/images/clients/mount-spring.png" },
+  { "name": "Samson Engineers", "logo": "assets/images/clients/samson-engineers.png" },
+  { "name": "Yokohama TWS", "logo": "assets/images/clients/yokohama-tws.png" },
+  { "name": "Hankook", "logo": "assets/images/clients/hankook.png" },
+  { "name": "Ranpa", "logo": "assets/images/clients/ranpa.png" },
+  { "name": "Lotus Tyres", "logo": "assets/images/clients/lotus-tyres.png" },
+  { "name": "Pasyale", "logo": "assets/images/clients/pasyale.png" },
+  { "name": "NAITA", "logo": "assets/images/clients/naita.png" }
+]

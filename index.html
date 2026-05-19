@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Supreme Advertising — sign products, signage design, and vehicle branding in Ragama, Sri Lanka. Fast turnaround, island-wide service." />
-  <title>Supreme Advertising | Signage &amp; Vehicle Branding — Ragama, Sri Lanka</title>
+  <meta name="description" content="Supreme Advertising — lightboxes, billboards, exhibition stalls, vehicle branding, and more in Ragama, Sri Lanka. Fast turnaround, island-wide service." />
+  <title>Supreme Advertising | Signage &amp; Branding — Ragama, Sri Lanka</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
@@ -14,7 +14,16 @@
   <header class="site-header" id="top">
     <div class="container header-inner">
       <a href="#top" class="brand" aria-label="Supreme Advertising home">
-        <img src="assets/logo.svg" alt="" width="44" height="44" class="brand-mark" />
+        <span class="brand-logo-wrap">
+          <img
+            src="assets/images/logo-supreme.png"
+            alt=""
+            class="brand-logo"
+            width="160"
+            height="64"
+            decoding="async"
+          />
+        </span>
         <span class="brand-text">
           <strong>Supreme</strong>
           <span>Advertising</span>
@@ -25,9 +34,30 @@
       </button>
       <nav class="site-nav" id="site-nav">
         <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#vehicle-branding" data-open-vehicle-branding>Gallery</a>
-        <a href="#areas">Service Area</a>
+        <div class="nav-dropdown">
+          <button
+            type="button"
+            class="nav-dropdown-toggle"
+            aria-expanded="false"
+            aria-haspopup="true"
+            aria-controls="services-menu"
+            id="services-menu-toggle"
+          >
+            Services
+            <span class="nav-dropdown-chevron" aria-hidden="true"></span>
+          </button>
+          <ul class="nav-dropdown-menu" id="services-menu" role="menu" aria-labelledby="services-menu-toggle">
+            <li role="none"><a href="#services" role="menuitem">All services</a></li>
+            <li role="none"><a href="#vehicle-branding" data-open-service-modal="vehicle-branding-modal" role="menuitem">Vehicle Branding</a></li>
+            <li role="none"><a href="#dealer-boards" data-open-service-modal="dealer-boards-modal" role="menuitem">Dealer Boards</a></li>
+            <li role="none"><a href="#interior-branding" data-open-service-modal="interior-branding-modal" role="menuitem">Interior Brandings</a></li>
+            <li role="none"><a href="#display-units" data-open-service-modal="display-units-modal" role="menuitem">Display Units</a></li>
+            <li role="none"><a href="#3d-signage" data-open-service-modal="3d-signage-modal" role="menuitem">3D Signage</a></li>
+            <li role="none"><a href="#exhibition-stalls" data-open-service-modal="exhibition-stalls-modal" role="menuitem">Exhibition Stalls</a></li>
+            <li role="none"><a href="#billboards" data-open-service-modal="billboards-modal" role="menuitem">Billboards</a></li>
+            <li role="none"><a href="#lightboxes" data-open-service-modal="lightboxes-modal" role="menuitem">Lightboxes</a></li>
+          </ul>
+        </div>
         <a href="#contact" class="nav-cta">Contact Us</a>
       </nav>
     </div>
@@ -38,27 +68,34 @@
       <div class="hero-bg" aria-hidden="true"></div>
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">Advertising Agency · Ragama, Sri Lanka</p>
           <h1>Signage that puts your brand <em>on the move</em></h1>
           <p class="lead">
             At Supreme, we offer a wide variety of sign products and signage design services that get your message out of the office and into the world — in as little as one day. Each solution is designed with your business goals in mind.
           </p>
           <div class="hero-actions">
             <a href="#contact" class="btn btn-primary">Get a Quote</a>
-            <a href="https://www.facebook.com/SupremeAds" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Follow on Facebook</a>
           </div>
-          <ul class="hero-stats">
-            <li><strong>2.6K+</strong><span>Facebook followers</span></li>
-            <li><strong>100%</strong><span>recommended · 13 reviews</span></li>
-            <li><strong>1 day</strong><span>fast turnaround available</span></li>
-          </ul>
         </div>
-        <div class="hero-visual">
+        <div class="hero-visual" data-hero-gallery>
           <figure class="hero-card hero-card-main">
-            <img src="assets/images/work-3.jpg" alt="Vehicle wrap branding for Hankook tyres on a delivery truck" width="640" height="480" />
+            <img
+              id="hero-main-img"
+              src="assets/images/vehicle-branding/vb-01.png"
+              alt="Commercial vehicle branding project 1 — Supreme Advertising"
+              width="640"
+              height="480"
+              decoding="async"
+            />
           </figure>
           <figure class="hero-card hero-card-secondary">
-            <img src="assets/images/work-2.jpg" alt="Rear vehicle branding with Hankook and DSI Tyres logos" width="320" height="240" />
+            <img
+              id="hero-secondary-img"
+              src="assets/images/vehicle-branding/vb-02.png"
+              alt="Commercial vehicle branding project 2 — Supreme Advertising"
+              width="320"
+              height="240"
+              decoding="async"
+            />
           </figure>
         </div>
       </div>
@@ -77,6 +114,7 @@
         <ul class="about-highlights">
           <li>Sign products &amp; custom signage design</li>
           <li>Vehicle graphics &amp; fleet branding</li>
+          <li>Lightboxes, billboards &amp; exhibition stalls</li>
           <li>Island-wide delivery &amp; installation support</li>
         </ul>
       </div>
@@ -90,24 +128,6 @@
           <p>End-to-end services to get your brand noticed — indoors, outdoors, and on the road.</p>
         </div>
         <div class="services-grid">
-          <article class="service-card">
-            <div class="service-card-media">
-              <img src="assets/images/services/sign-products.jpg" alt="Custom promotional display stand with printed banner graphics" loading="lazy" />
-            </div>
-            <div class="service-card-body">
-              <h3>Sign Products</h3>
-              <p>We offer a wide variety of sign products — from shop signs and name boards to banners, flex prints, and point-of-sale display stands — built to get your message out of the office and into the world.</p>
-            </div>
-          </article>
-          <article class="service-card">
-            <div class="service-card-media">
-              <img src="assets/images/services/signage-design.jpg" alt="Custom signage with printed graphics and instructional panels" loading="lazy" />
-            </div>
-            <div class="service-card-body">
-              <h3>Signage Design</h3>
-              <p>Our signage design services combine creative artwork with practical production. Each solution is designed with your business goals in mind, from custom graphics and logos to full-panel layouts.</p>
-            </div>
-          </article>
           <article
             class="service-card service-card--interactive"
             id="vehicle-branding"
@@ -117,7 +137,7 @@
             aria-label="Vehicle Branding — click to view description and photo gallery"
           >
             <div class="service-card-media">
-              <img src="assets/images/services/vehicle-branding.jpg" alt="Beyond van vehicle branding by Supreme Advertising" loading="lazy" />
+              <img src="assets/images/services/vehicle-branding.jpg" alt="Commercial vehicle branding by Supreme Advertising" loading="lazy" />
             </div>
             <div class="service-card-body">
               <h3>Vehicle Branding</h3>
@@ -125,50 +145,137 @@
               <span class="service-card-link">View gallery &amp; details</span>
             </div>
           </article>
-          <article class="service-card">
+          <article
+            class="service-card service-card--interactive"
+            id="dealer-boards"
+            data-service-modal="dealer-boards-modal"
+            tabindex="0"
+            role="button"
+            aria-label="Dealer Boards — click to view description and photo gallery"
+          >
             <div class="service-card-media">
-              <img src="assets/images/services/fast-turnaround.jpg" alt="Completed vehicle branding ready for the road" loading="lazy" />
+              <img src="assets/images/services/dealer-boards.jpg" alt="Outdoor dealer board signage by Supreme Advertising" loading="lazy" />
             </div>
             <div class="service-card-body">
-              <h3>Fast Turnaround</h3>
-              <p>Many projects completed in as little as one day. We know your campaign cannot wait — Supreme delivers quality signage and branding on the timeline your business needs.</p>
+              <h3>Dealer Boards</h3>
+              <p class="service-card-excerpt">High-impact storefront and roadside dealer boards that capture drive-by traffic day and night.</p>
+              <span class="service-card-link">View gallery &amp; details</span>
+            </div>
+          </article>
+          <article
+            class="service-card service-card--interactive"
+            id="interior-branding"
+            data-service-modal="interior-branding-modal"
+            tabindex="0"
+            role="button"
+            aria-label="Interior Brandings — click to view description and photo gallery"
+          >
+            <div class="service-card-media">
+              <img src="assets/images/services/interior-branding.jpg" alt="Custom interior wall branding by Supreme Advertising" loading="lazy" />
+            </div>
+            <div class="service-card-body">
+              <h3>Interior Brandings</h3>
+              <p class="service-card-excerpt">Custom indoor signs and wall graphics that shape how visitors navigate, feel, and remember your brand.</p>
+              <span class="service-card-link">View gallery &amp; details</span>
+            </div>
+          </article>
+          <article
+            class="service-card service-card--interactive"
+            id="display-units"
+            data-service-modal="display-units-modal"
+            tabindex="0"
+            role="button"
+            aria-label="Display Units — click to view description and photo gallery"
+          >
+            <div class="service-card-media">
+              <img src="assets/images/services/display-units.jpg" alt="Custom branded retail display unit by Supreme Advertising" loading="lazy" />
+            </div>
+            <div class="service-card-body">
+              <h3>Display Units</h3>
+              <p class="service-card-excerpt">Custom POS racks, countertop stands, and branded fixtures that organize products and sell your brand at the shelf.</p>
+              <span class="service-card-link">View gallery &amp; details</span>
+            </div>
+          </article>
+          <article
+            class="service-card service-card--interactive"
+            id="3d-signage"
+            data-service-modal="3d-signage-modal"
+            tabindex="0"
+            role="button"
+            aria-label="3D Signage — click to view description and photo gallery"
+          >
+            <div class="service-card-media">
+              <img src="assets/images/services/3d-signage.jpg" alt="Outdoor 3D dimensional lettering by Supreme Advertising" loading="lazy" />
+            </div>
+            <div class="service-card-body">
+              <h3>3D Signage</h3>
+              <p class="service-card-excerpt">Outdoor dimensional letters and monument signs that identify your business day and night.</p>
+              <span class="service-card-link">View gallery &amp; details</span>
+            </div>
+          </article>
+          <article
+            class="service-card service-card--interactive"
+            id="exhibition-stalls"
+            data-service-modal="exhibition-stalls-modal"
+            tabindex="0"
+            role="button"
+            aria-label="Exhibition Stalls — click to view description and photo gallery"
+          >
+            <div class="service-card-media">
+              <img src="assets/images/services/exhibition-stalls.jpg" alt="Custom exhibition stall by Supreme Advertising" loading="lazy" />
+            </div>
+            <div class="service-card-body">
+              <h3>Exhibition Stalls</h3>
+              <p class="service-card-excerpt">Custom trade show booths with backlit branding, product displays, and a polished finish that draws visitors in.</p>
+              <span class="service-card-link">View gallery &amp; details</span>
+            </div>
+          </article>
+          <article
+            class="service-card service-card--interactive"
+            id="billboards"
+            data-service-modal="billboards-modal"
+            tabindex="0"
+            role="button"
+            aria-label="Billboards — click to view description and photo gallery"
+          >
+            <div class="service-card-media">
+              <img src="assets/images/services/billboards.jpg" alt="Large-format vinyl billboard by Supreme Advertising" loading="lazy" />
+            </div>
+            <div class="service-card-body">
+              <h3>Billboards</h3>
+              <p class="service-card-excerpt">Full-color custom billboard faces on durable vinyl — vivid prints built for Sri Lanka&rsquo;s sun and your structure.</p>
+              <span class="service-card-link">View gallery &amp; details</span>
+            </div>
+          </article>
+          <article
+            class="service-card service-card--interactive"
+            id="lightboxes"
+            data-service-modal="lightboxes-modal"
+            tabindex="0"
+            role="button"
+            aria-label="Lightboxes — click to view description and photo gallery"
+          >
+            <div class="service-card-media">
+              <img src="assets/images/services/lightboxes.jpg" alt="Illuminated storefront lightbox by Supreme Advertising" loading="lazy" />
+            </div>
+            <div class="service-card-body">
+              <h3>Lightboxes</h3>
+              <p class="service-card-excerpt">Illuminated signage and swappable graphic faces that keep your brand visible day and night.</p>
+              <span class="service-card-link">View gallery &amp; details</span>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section areas" id="areas">
-      <div class="container areas-inner">
+    <section class="section clients" id="clients" aria-labelledby="clients-heading">
+      <div class="container">
         <div class="section-head">
-          <p class="section-label">Where We Work</p>
-          <h2>Serving businesses across Sri Lanka</h2>
-          <p>Based in Ragama with projects and deliveries throughout the island.</p>
+          <p class="section-label">Our Clients</p>
+          <h2 id="clients-heading">Trusted by leading brands</h2>
+          <p>We are proud to partner with businesses across Sri Lanka — serving both retail brands and large enterprises with trusted signage solutions.</p>
         </div>
-        <ul class="areas-list">
-          <li>Colombo</li>
-          <li>Gampaha</li>
-          <li>Kandy</li>
-          <li>Galle</li>
-          <li>Matara</li>
-          <li>Kalutara</li>
-          <li>Hambantota</li>
-          <li>Jaffna</li>
-          <li>Puttalam</li>
-          <li>Kegalle</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section reviews">
-      <div class="container reviews-inner">
-        <blockquote>
-          <p>Trusted by local businesses for professional signage and reliable service.</p>
-        </blockquote>
-        <p class="reviews-meta">
-          <strong>100% recommend</strong> · 13 reviews on Facebook · 2,600+ followers
-        </p>
-        <a href="https://www.facebook.com/SupremeAds/reviews" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-light">Read reviews</a>
+        <ul class="clients-grid" id="clients-grid" aria-label="Client logos" aria-busy="true"></ul>
       </div>
     </section>
 
@@ -188,18 +295,61 @@
             <li>
               <span class="contact-label">Phone</span>
               <a href="tel:+94112956452">+94 11 295 6452</a>
+              <a href="tel:+94777036788" class="contact-phone-alt">+94 77 703 6788</a>
+            </li>
+            <li>
+              <a
+                href="https://wa.me/94777036788"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-social-link"
+                aria-label="Message Supreme Advertising on WhatsApp"
+              >
+                <svg class="contact-wa-icon" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"
+                  />
+                </svg>
+              </a>
             </li>
             <li>
               <span class="contact-label">Email</span>
-              <a href="mailto:supremeart@sltnet.lk">supremeart@sltnet.lk</a>
+              <a href="mailto:supremeart@yahoo.com">supremeart@yahoo.com</a>
             </li>
-            <li>
-              <span class="contact-label">Facebook</span>
-              <a href="https://www.facebook.com/SupremeAds" target="_blank" rel="noopener noreferrer">facebook.com/SupremeAds</a>
+            <li class="contact-social-row">
+              <a
+                href="https://www.facebook.com/SupremeAds"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-social-link"
+                aria-label="Follow Supreme Advertising on Facebook"
+              >
+                <svg class="contact-fb-icon" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://lk.linkedin.com/company/supreme-advertising-pvt-ltd"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-social-link"
+                aria-label="Supreme Advertising on LinkedIn"
+              >
+                <svg class="contact-li-icon" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                  />
+                </svg>
+              </a>
             </li>
           </ul>
         </div>
-        <form class="contact-form" action="mailto:supremeart@sltnet.lk" method="post" enctype="text/plain">
+        <form class="contact-form" action="mailto:supremeart@yahoo.com" method="post" enctype="text/plain">
           <label>
             <span>Name</span>
             <input type="text" name="name" required autocomplete="name" />
@@ -230,16 +380,139 @@
       <div class="service-modal-description">
         <p>Turn your vehicle into a mobile, bumper-to-bumper marketing machine with our professional custom vehicle graphics service. Want to maximize your visibility without maxing out your marketing budget? Because they&rsquo;re always in motion, vehicle graphics and vehicle wraps are a cost-effective way to promote your business around town and across the country.</p>
       </div>
-      <div class="service-modal-gallery vb-gallery" id="vehicle-branding-modal-gallery" aria-label="Vehicle branding photos">
-        <figure class="vb-gallery-item"><button type="button" class="vb-gallery-trigger" aria-label="View larger image"><img src="assets/images/vehicle-branding/fb-01.jpg" alt="Beyond van vehicle branding" loading="lazy" /></button></figure>
-        <figure class="vb-gallery-item"><button type="button" class="vb-gallery-trigger" aria-label="View larger image"><img src="assets/images/vehicle-branding/fb-02.jpg" alt="Vehicle wrap project" loading="lazy" /></button></figure>
-        <figure class="vb-gallery-item"><button type="button" class="vb-gallery-trigger" aria-label="View larger image"><img src="assets/images/vehicle-branding/fb-03.jpg" alt="Custom vehicle graphics" loading="lazy" /></button></figure>
-        <figure class="vb-gallery-item"><button type="button" class="vb-gallery-trigger" aria-label="View larger image"><img src="assets/images/vehicle-branding/fb-04.jpg" alt="Professional vehicle branding" loading="lazy" /></button></figure>
-        <figure class="vb-gallery-item"><button type="button" class="vb-gallery-trigger" aria-label="View larger image"><img src="assets/images/vehicle-branding/fb-05.jpg" alt="Fleet vehicle wrap" loading="lazy" /></button></figure>
-        <figure class="vb-gallery-item"><button type="button" class="vb-gallery-trigger" aria-label="View larger image"><img src="assets/images/vehicle-branding/fb-06.jpg" alt="Vehicle graphics and decals" loading="lazy" /></button></figure>
-        <figure class="vb-gallery-item"><button type="button" class="vb-gallery-trigger" aria-label="View larger image"><img src="assets/images/vehicle-branding/fb-07.jpg" alt="Mobile advertising vehicle branding" loading="lazy" /></button></figure>
-        <figure class="vb-gallery-item"><button type="button" class="vb-gallery-trigger" aria-label="View larger image"><img src="assets/images/vehicle-branding/fb-08.jpg" alt="Bumper-to-bumper vehicle branding" loading="lazy" /></button></figure>
+      <div class="service-modal-gallery vb-gallery" id="vehicle-branding-modal-gallery" aria-label="Vehicle branding photos" aria-busy="true"></div>
+      <footer class="service-modal-footer">
+        <a href="#contact" class="btn btn-primary" data-close-modal>Get a quote</a>
+      </footer>
+    </div>
+  </div>
+
+  <div class="service-modal" id="dealer-boards-modal" aria-hidden="true">
+    <div class="service-modal-backdrop" data-close-modal></div>
+    <div class="service-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="dealer-boards-modal-title">
+      <button type="button" class="service-modal-close" data-close-modal aria-label="Close gallery">&times;</button>
+      <header class="service-modal-header">
+        <p class="section-label">Our Services</p>
+        <h2 id="dealer-boards-modal-title">Dealer Boards</h2>
+      </header>
+      <div class="service-modal-description">
+        <p>You may own a service business that is hard to advertise because you don&rsquo;t have a storefront. Perhaps you&rsquo;d like to tap into the drive-by traffic your business receives at night. Or maybe your target market is hard to reach because you sell luxury goods or a unique product or service. There are business signs that can help with all of these situations.</p>
       </div>
+      <div class="service-modal-gallery vb-gallery" id="dealer-boards-modal-gallery" aria-label="Dealer board photos" aria-busy="true"></div>
+      <footer class="service-modal-footer">
+        <a href="#contact" class="btn btn-primary" data-close-modal>Get a quote</a>
+      </footer>
+    </div>
+  </div>
+
+  <div class="service-modal" id="interior-branding-modal" aria-hidden="true">
+    <div class="service-modal-backdrop" data-close-modal></div>
+    <div class="service-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="interior-branding-modal-title">
+      <button type="button" class="service-modal-close" data-close-modal aria-label="Close gallery">&times;</button>
+      <header class="service-modal-header">
+        <p class="section-label">Our Services</p>
+        <h2 id="interior-branding-modal-title">Interior Brandings</h2>
+      </header>
+      <div class="service-modal-description">
+        <p>Once customers and visitors are inside your building or facility, their experience is affected in different ways. How easy it is for them to navigate inside it, what types of emotions or thoughts your custom sign solutions convey, and what opinions are left behind will either contribute to, or subtract from, their overall impressions of your brand. No matter what your vision or goals are, we can create the ideal indoor sign solutions to fit your company brand.</p>
+      </div>
+      <div class="service-modal-gallery vb-gallery" id="interior-branding-modal-gallery" aria-label="Interior branding photos" aria-busy="true"></div>
+      <footer class="service-modal-footer">
+        <a href="#contact" class="btn btn-primary" data-close-modal>Get a quote</a>
+      </footer>
+    </div>
+  </div>
+
+  <div class="service-modal" id="display-units-modal" aria-hidden="true">
+    <div class="service-modal-backdrop" data-close-modal></div>
+    <div class="service-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="display-units-modal-title">
+      <button type="button" class="service-modal-close" data-close-modal aria-label="Close gallery">&times;</button>
+      <header class="service-modal-header">
+        <p class="section-label">Our Services</p>
+        <h2 id="display-units-modal-title">Display Units</h2>
+      </header>
+      <div class="service-modal-description">
+        <p>Custom display units turn everyday fixtures into powerful point-of-sale branding. From countertop trays and die-cut headers to free-standing metal racks and illuminated shelf toppers, we design and build displays that organize your products, reinforce your identity, and catch the customer&rsquo;s eye where buying decisions happen.</p>
+        <p>Our solutions range from compact retail POS stands and pharmacy counter units to heavy-duty showroom racks for tyres, batteries, and bulk goods. Graphics can be applied to headers, shelf strips, side panels, and bases using durable print and laminate finishes built for busy shops, warehouses, and trade show floors.</p>
+        <p>Whether you need a branded hand-washing station, outdoor bicycle-rack banners, a multi-tier water jug rack, or a fully wrapped battery display, Supreme fabricates display hardware to your dimensions and brand guidelines &mdash; so your products stay visible, accessible, and on-message.</p>
+      </div>
+      <div class="service-modal-gallery vb-gallery" id="display-units-modal-gallery" aria-label="Display unit photos" aria-busy="true"></div>
+      <footer class="service-modal-footer">
+        <a href="#contact" class="btn btn-primary" data-close-modal>Get a quote</a>
+      </footer>
+    </div>
+  </div>
+
+  <div class="service-modal" id="3d-signage-modal" aria-hidden="true">
+    <div class="service-modal-backdrop" data-close-modal></div>
+    <div class="service-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="3d-signage-modal-title">
+      <button type="button" class="service-modal-close" data-close-modal aria-label="Close gallery">&times;</button>
+      <header class="service-modal-header">
+        <p class="section-label">Our Services</p>
+        <h2 id="3d-signage-modal-title">3D Signage</h2>
+      </header>
+      <div class="service-modal-description">
+        <p>Outdoor dimensional lettering is the most effective signage to grab attention and direct customers to your place of business. This custom outdoor signage solution can be installed directly to your building facade and to self-standing signage structures, such as monument signs. Because our custom dimensional lettering installations occur outdoors as the main building identification sign, it is important that businesses consider some sort of lighting. Supreme offers plenty of illumination options, including LED and backlit dimensional letters, to attract attention to your brand, day or night! Supreme offers custom outdoor dimensional letters and lettering in a vast array of sizes, shapes and materials, including metal and high density foam. Even our plastic materials are as durable outdoors as their metal counterparts without the added cost!</p>
+      </div>
+      <div class="service-modal-gallery vb-gallery" id="3d-signage-modal-gallery" aria-label="3D signage photos" aria-busy="true"></div>
+      <footer class="service-modal-footer">
+        <a href="#contact" class="btn btn-primary" data-close-modal>Get a quote</a>
+      </footer>
+    </div>
+  </div>
+
+  <div class="service-modal" id="exhibition-stalls-modal" aria-hidden="true">
+    <div class="service-modal-backdrop" data-close-modal></div>
+    <div class="service-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="exhibition-stalls-modal-title">
+      <button type="button" class="service-modal-close" data-close-modal aria-label="Close gallery">&times;</button>
+      <header class="service-modal-header">
+        <p class="section-label">Our Services</p>
+        <h2 id="exhibition-stalls-modal-title">Exhibition Stalls</h2>
+      </header>
+      <div class="service-modal-description">
+        <p>A trade show or exhibition is your chance to stop foot traffic and start conversations. Supreme designs and builds custom exhibition stalls that showcase your brand with impact — from backlit headers and illuminated product panels to fully printed booth wraps, counters, and 3D logos. Whether you need a compact corner booth or a bold convention presence, we handle design, production, and installation so your stall stands out on the show floor and leaves a lasting impression on every visitor.</p>
+      </div>
+      <div class="service-modal-gallery vb-gallery" id="exhibition-stalls-modal-gallery" aria-label="Exhibition stall photos" aria-busy="true"></div>
+      <footer class="service-modal-footer">
+        <a href="#contact" class="btn btn-primary" data-close-modal>Get a quote</a>
+      </footer>
+    </div>
+  </div>
+
+  <div class="service-modal" id="billboards-modal" aria-hidden="true">
+    <div class="service-modal-backdrop" data-close-modal></div>
+    <div class="service-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="billboards-modal-title">
+      <button type="button" class="service-modal-close" data-close-modal aria-label="Close gallery">&times;</button>
+      <header class="service-modal-header">
+        <p class="section-label">Our Services</p>
+        <h2 id="billboards-modal-title">Billboards</h2>
+      </header>
+      <div class="service-modal-description">
+        <p>We digital print custom billboard faces full color, 4 color process on a 12&ndash;13 oz flexible white vinyl. They are printed at up to 600 dpi, meaning your billboard colors will really POP. Several finishing options are available depending on how it will be mounted; our standard being a 3&Prime; bleed and 3&Prime; pole pocket to allow you to wrap them onto the backside of the structure and fix with poles. We use solvent UV resistant inks to reduce fading from the sun and you can expect 2&ndash;3 years life from our billboard banners before much noticeable fading.</p>
+        <p>Giant vinyl banners are commonly used for billboards, building wraps, stadium vinyl banners and trade shows. They can be printed low resolution for billboard use or high resolution for trade show use. Production times for billboards is usually 1&ndash;2 weeks (after artwork approval).</p>
+        <p><strong>Please note:</strong> we print and deliver you the billboard faces for installation on your own or rented structure. We do not offer actual rental locations around the country.</p>
+      </div>
+      <div class="service-modal-gallery vb-gallery" id="billboards-modal-gallery" aria-label="Billboard photos" aria-busy="true"></div>
+      <footer class="service-modal-footer">
+        <a href="#contact" class="btn btn-primary" data-close-modal>Get a quote</a>
+      </footer>
+    </div>
+  </div>
+
+  <div class="service-modal" id="lightboxes-modal" aria-hidden="true">
+    <div class="service-modal-backdrop" data-close-modal></div>
+    <div class="service-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="lightboxes-modal-title">
+      <button type="button" class="service-modal-close" data-close-modal aria-label="Close gallery">&times;</button>
+      <header class="service-modal-header">
+        <p class="section-label">Our Services</p>
+        <h2 id="lightboxes-modal-title">Lightboxes</h2>
+      </header>
+      <div class="service-modal-description">
+        <p>Lightboxes enhance a business&rsquo; directory and way-finding signage, monument signage and dimensional lettering and make your business easier to find at night. The wide variety of lightboxes and materials lend to eye-catching lighting effects that improve the perception of your brand.</p>
+        <p>Because a standard lightbox is a panel with graphics applied, businesses are able to easily change the face or swap out the graphics, without a complete re-investment into a full lightbox solution &mdash; saving money over time. Lightbox faces can easily be installed to existing self-standing monument signs, pylon signs and to the building facade providing cost-effective, 24 hour advertising.</p>
+        <p>Outdoor lightboxes are the perfect advertising and branding solutions for all types of business including: Government, manufacturing, property managers, restaurants and retail.</p>
+      </div>
+      <div class="service-modal-gallery vb-gallery" id="lightboxes-modal-gallery" aria-label="Lightbox photos" aria-busy="true"></div>
       <footer class="service-modal-footer">
         <a href="#contact" class="btn btn-primary" data-close-modal>Get a quote</a>
       </footer>
@@ -248,6 +521,12 @@
 
   <div class="vb-lightbox" id="vb-lightbox" aria-hidden="true">
     <div class="vb-lightbox-backdrop" data-close-lightbox></div>
+    <button type="button" class="vb-lightbox-nav vb-lightbox-prev" id="vb-lightbox-prev" aria-label="Previous photo" hidden>
+      <span aria-hidden="true">&lsaquo;</span>
+    </button>
+    <button type="button" class="vb-lightbox-nav vb-lightbox-next" id="vb-lightbox-next" aria-label="Next photo" hidden>
+      <span aria-hidden="true">&rsaquo;</span>
+    </button>
     <div class="vb-lightbox-dialog">
       <button type="button" class="vb-lightbox-close" data-close-lightbox aria-label="Close image">&times;</button>
       <img id="vb-lightbox-img" alt="" />
@@ -258,8 +537,7 @@
     <div class="container footer-inner">
       <p>&copy; <span id="year"></span> Supreme Advertising. All rights reserved.</p>
       <nav class="footer-links" aria-label="Footer links">
-        <a href="https://www.facebook.com/SupremeAds" target="_blank" rel="noopener noreferrer">Facebook</a>
-        <a href="/admin">Admin portal</a>
+        <a href="/admin">Resources</a>
       </nav>
     </div>
   </footer>
