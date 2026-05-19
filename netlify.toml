@@ -1,4 +1,4 @@
-# Supreme Advertising — static site + Netlify Functions for /api (admin login & invoicing).
+# Supreme Advertising — static site + Netlify Functions for admin API.
 
 [build]
   command = "npm run build"
@@ -12,6 +12,25 @@
   directory = "netlify/functions"
   node_bundler = "esbuild"
   external_node_modules = ["better-sqlite3"]
+
+# Auth (no SQLite) — must come before /api/* catch-all
+[[redirects]]
+  from = "/api/login"
+  to = "/.netlify/functions/auth"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/session"
+  to = "/.netlify/functions/auth"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/logout"
+  to = "/.netlify/functions/auth"
+  status = 200
+  force = true
 
 [[redirects]]
   from = "/api/*"

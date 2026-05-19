@@ -1,5 +1,5 @@
 const serverless = require("serverless-http");
-const { createApp } = require("../../lib/create-app");
+const { createAuthApp } = require("../../lib/auth-app");
 
 let handler;
 
@@ -7,15 +7,15 @@ module.exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
   try {
     if (!handler) {
-      handler = serverless(createApp({ serverless: true }));
+      handler = serverless(createAuthApp());
     }
     return await handler(event, context);
   } catch (err) {
-    console.error("API function error:", err);
+    console.error("Auth function error:", err);
     return {
       statusCode: 500,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ error: "API service unavailable" }),
+      body: JSON.stringify({ error: "Auth service unavailable" }),
     };
   }
 };

@@ -1,4 +1,5 @@
-const { createApp, getAdminPassword } = require("./lib/create-app");
+const { createApp } = require("./lib/create-app");
+const { getAdminPassword } = require("./lib/auth-config");
 
 const app = createApp();
 const PORT = process.env.PORT || 3000;
