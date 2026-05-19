@@ -1,21 +1,14 @@
-const serverless = require("serverless-http");
-const { createAuthApp } = require("../../lib/auth-app");
+const { handleAuthRequest } = require("../../lib/session-cookie");
 
-let handler;
-
-module.exports.handler = async (event, context) => {
-  context.callbackWaitsForEmptyEventLoop = false;
+exports.handler = async (event) => {
   try {
-    if (!handler) {
-      handler = serverless(createAuthApp());
-    }
-    return await handler(event, context);
+    return handleAuthRequest(event);
   } catch (err) {
     console.error("Auth function error:", err);
     return {
       statusCode: 500,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ error: "Auth service unavailable" }),
+      body: JSON.stringify({ error: "Auth service unavailable", detail: err.message }),
     };
   }
 };
