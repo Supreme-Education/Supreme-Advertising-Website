@@ -1,0 +1,25 @@
+# Supreme Advertising — static site deployment (Express admin runs via `node server.js` elsewhere).
+# This file overrides Netlify UI build settings (e.g. prisma migrate) that do not apply to this repo.
+
+[build]
+  command = "npm run build"
+  publish = "."
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA-style admin HTML (API routes require the Node server, not Netlify static hosting)
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/admin/print.html"
+  to = "/admin/print.html"
+  status = 200
+
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"

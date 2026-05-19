@@ -5,7 +5,8 @@
   "description": "Supreme Advertising website with admin invoicing portal",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "build": "node scripts/netlify-build.js"
   },
   "engines": {
     "node": ">=18"
