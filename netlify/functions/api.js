@@ -1,5 +1,5 @@
 const serverless = require("serverless-http");
-const { createDataApp } = require("../../lib/create-data-app");
+const { createNetlifyDataApp } = require("../../lib/create-netlify-data-app");
 
 let handler;
 
@@ -7,7 +7,7 @@ module.exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
   try {
     if (!handler) {
-      handler = serverless(createDataApp({ serverless: true }));
+      handler = serverless(createNetlifyDataApp());
     }
     return await handler(event, context);
   } catch (err) {
