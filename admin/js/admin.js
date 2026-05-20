@@ -145,10 +145,16 @@
   });
 
   $$("[data-new]").forEach((btn) => {
-    btn.addEventListener("click", () => openEditor(null, btn.dataset.new));
+    btn.addEventListener("click", () => openEditor(null, btn.dataset.new).catch(showEditorError));
   });
 
-  $("#list-new-btn").addEventListener("click", () => openEditor(null, currentListType));
+  $("#list-new-btn").addEventListener("click", () =>
+    openEditor(null, currentListType).catch(showEditorError)
+  );
+
+  function showEditorError(err) {
+    alert(err?.message || "Could not open the editor. Please try again.");
+  }
 
   async function refreshDashboard() {
     const stats = await api("/api/stats");
@@ -184,7 +190,14 @@
 
   async function getQuotationGeneralDefault() {
     if (!companyDefaults) {
-      companyDefaults = await api("/api/company");
+      try {
+        companyDefaults = await api("/api/company");
+      } catch {
+        companyDefaults = {
+          quotationGeneralLine:
+            "We are pleased to submit our quotation for the following work as per your requirement:",
+        };
+      }
     }
     return companyDefaults.quotationGeneralLine || "";
   }
@@ -384,7 +397,7 @@
           window.open(`/admin/print.html?id=${id}`, "_blank");
         } else if (action === "edit") {
           const doc = await api(`/api/documents/${id}`);
-          openEditor(doc);
+          openEditor(doc).catch(showEditorError);
         } else if (action === "print") {
           window.open(`/admin/print.html?id=${id}&print=1`, "_blank");
         } else if (action === "delete") {
@@ -405,6 +418,12 @@
       .replace(/"/g, "&quot;");
   }
 
+  function fallbackDocNumber(docType) {
+    const prefix = docType === "invoice" ? "INV" : "QUO";
+    const year = new Date().getFullYear();
+    return `${prefix}-${year}-001`;
+  }
+
   async function openEditor(doc, type) {
     editorDocId = doc?.id || null;
     const docType = doc?.type || type || "invoice";
@@ -420,6 +439,8 @@
     $("#status").innerHTML = statuses
       .map((s) => `<option value="${s}">${s}</option>`)
       .join("");
+
+    showView("editor");
 
     if (doc) {
       $("#doc-id").value = doc.id;
@@ -439,7 +460,12 @@
       renderLineItems(doc.line_items);
     } else {
       $("#doc-id").value = "";
-      const { doc_number } = await api(`/api/next-number?type=${docType}`);
+      let doc_number = fallbackDocNumber(docType);
+      try {
+        ({ doc_number } = await api(`/api/next-number?type=${docType}`));
+      } catch (err) {
+        console.warn("next-number API failed, using fallback:", err);
+      }
       $("#doc-number").value = doc_number;
       $("#issue-date").value = todayISO();
       $("#due-date").value = "";
@@ -460,10 +486,15 @@
       renderLineItems([{ description: "", qty: 1, unit_price: 0 }]);
     }
 
-    await populateCustomerSelect();
+    try {
+      await populateCustomerSelect();
+    } catch (err) {
+      console.warn("customers list failed:", err);
+      $("#customer-select").innerHTML =
+        '<option value="">— Select a customer to fill details —</option>';
+    }
     $("#customer-select").value = "";
     updateTotalsPreview();
-    showView("editor");
   }
 
   function renderLineItems(items) {
