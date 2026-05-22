@@ -4,3 +4,5 @@ data/*.db
 data/*.db-journal
 *.log
 cookies.txt
+data/contacts-import.csv
+data/*-contacts.csv

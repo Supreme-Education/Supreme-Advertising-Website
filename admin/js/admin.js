@@ -43,6 +43,19 @@
     return `LKR ${Number(n || 0).toLocaleString("en-LK", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   }
 
+  function formatListCount(count, singular, plural) {
+    const n = Number(count) || 0;
+    const label = n === 1 ? singular : plural || `${singular}s`;
+    return `${n.toLocaleString("en-LK")} ${label}`;
+  }
+
+  function setListCount(el, count, singular, plural, searchQuery = "") {
+    if (!el) return;
+    let text = formatListCount(count, singular, plural);
+    if (searchQuery) text += " (filtered)";
+    el.textContent = text;
+  }
+
   function todayISO() {
     return new Date().toISOString().slice(0, 10);
   }
@@ -181,6 +194,14 @@
       ? renderTable(docs)
       : `<p class="empty-state">No ${currentListType}s found.</p>`;
     bindTableActions($("#list-table-wrap"));
+    const docLabel = currentListType === "invoice" ? "invoice" : "quotation";
+    setListCount(
+      $("#list-count"),
+      docs.length,
+      docLabel,
+      `${docLabel}s`,
+      search
+    );
   }
 
   $("#list-search").addEventListener("input", () => {
@@ -219,6 +240,7 @@
     $("#customer-form-title").textContent = customer ? "Edit customer" : "Add customer";
     $("#customer-id").value = customer?.id || "";
     $("#customer-name").value = customer?.name || "";
+    $("#customer-company").value = customer?.company || "";
     $("#customer-email").value = customer?.email || "";
     $("#customer-phone").value = customer?.phone || "";
     $("#customer-address").value = customer?.address || "";
@@ -232,6 +254,7 @@
       ? renderCustomersTable(customers)
       : '<p class="empty-state">No customers yet. Add your first customer above.</p>';
     bindCustomerActions($("#customers-table-wrap"));
+    setListCount($("#customers-list-count"), customers.length, "customer", "customers", search);
   }
 
   function renderCustomersTable(customers) {
@@ -240,6 +263,7 @@
         <thead>
           <tr>
             <th>Name</th>
+            <th>Company</th>
             <th>Email</th>
             <th>Phone</th>
             <th>Address</th>
@@ -252,6 +276,7 @@
               (c) => `
             <tr data-id="${c.id}">
               <td><strong>${escapeHtml(c.name)}</strong></td>
+              <td>${escapeHtml(c.company || "—")}</td>
               <td>${escapeHtml(c.email || "—")}</td>
               <td>${escapeHtml(c.phone || "—")}</td>
               <td>${escapeHtml(c.address || "—")}</td>
@@ -287,6 +312,17 @@
     });
   }
 
+  $("#customer-email").addEventListener("blur", async () => {
+    const email = $("#customer-email").value.trim();
+    if (!email || $("#customer-company").value.trim()) return;
+    try {
+      const { company } = await api(`/api/company-from-email?email=${encodeURIComponent(email)}`);
+      if (company) $("#customer-company").value = company;
+    } catch {
+      /* ignore */
+    }
+  });
+
   $("#customer-new-btn").addEventListener("click", () => showCustomerForm());
 
   $("#customer-form-cancel").addEventListener("click", hideCustomerForm);
@@ -295,6 +331,7 @@
     e.preventDefault();
     const payload = {
       name: $("#customer-name").value.trim(),
+      company: $("#customer-company").value.trim(),
       email: $("#customer-email").value.trim(),
       phone: $("#customer-phone").value.trim(),
       address: $("#customer-address").value.trim(),
@@ -330,7 +367,7 @@
       customersCache
         .map(
           (c) =>
-            `<option value="${c.id}"${String(c.id) === String(selectedId) ? " selected" : ""}>${escapeHtml(c.name)}</option>`
+            `<option value="${c.id}"${String(c.id) === String(selectedId) ? " selected" : ""}>${escapeHtml(c.name)}${c.company ? ` — ${escapeHtml(c.company)}` : ""}</option>`
         )
         .join("");
   }
@@ -338,8 +375,13 @@
   function applyCustomerToEditor(customerId) {
     const customer = customersCache.find((c) => String(c.id) === String(customerId));
     if (!customer) return;
+    const company = (customer.company || "").trim();
     $("#client-name").value = customer.name || "";
-    $("#client-address").value = customer.address || "";
+    const addr = (customer.address || "").trim();
+    $("#client-address").value =
+      company && !addr.toLowerCase().startsWith(company.toLowerCase())
+        ? `${company}\n${addr}`.trim()
+        : addr;
     $("#client-phone").value = customer.phone || "";
     $("#client-email").value = customer.email || "";
   }

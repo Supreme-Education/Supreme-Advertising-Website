@@ -71,8 +71,12 @@
             <input type="hidden" id="customer-id" />
             <div class="form-row">
               <div class="form-field">
-                <label for="customer-name">Name / Company</label>
+                <label for="customer-name">Contact name</label>
                 <input type="text" id="customer-name" required />
+              </div>
+              <div class="form-field">
+                <label for="customer-company">Company</label>
+                <input type="text" id="customer-company" placeholder="Filled from email domain when saved" />
               </div>
               <div class="form-field">
                 <label for="customer-email">Email</label>
@@ -95,9 +99,10 @@
         </div>
         <div class="panel">
           <div class="panel-toolbar">
-            <input type="search" id="customers-search" placeholder="Search name, email, or address…" />
+            <input type="search" id="customers-search" placeholder="Search name, company, email, or address…" />
           </div>
           <div id="customers-table-wrap"></div>
+          <p id="customers-list-count" class="list-count" aria-live="polite"></p>
         </div>
       </section>
 
@@ -111,6 +116,7 @@
             <input type="search" id="list-search" placeholder="Search number or client…" />
           </div>
           <div id="list-table-wrap"></div>
+          <p id="list-count" class="list-count" aria-live="polite"></p>
         </div>
       </section>
 

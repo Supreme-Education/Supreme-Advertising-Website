@@ -434,6 +434,16 @@ a {
   color: var(--red);
 }
 
+.list-count {
+  margin: 0;
+  padding: 0.85rem 1rem 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-align: right;
+}
+
 .empty-state {
   padding: 2rem;
   text-align: center;

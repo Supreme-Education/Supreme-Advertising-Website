@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "build": "node scripts/netlify-build.js"
+    "build": "node scripts/netlify-build.js",
+    "import-contacts": "node scripts/import-contacts.js"
   },
   "engines": {
     "node": ">=18"
