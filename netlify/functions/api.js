@@ -1,11 +1,13 @@
 const serverless = require("serverless-http");
 const { createNetlifyDataApp } = require("../../lib/create-netlify-data-app");
+const { initStore } = require("../../lib/store-json");
 
 let handler;
 
 module.exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
   try {
+    await initStore();
     if (!handler) {
       handler = serverless(createNetlifyDataApp());
     }
