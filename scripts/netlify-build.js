@@ -8,7 +8,7 @@ console.log(
 );
 const fs = require("fs");
 const path = require("path");
-const seed = path.join(__dirname, "..", "data", "admin-seed.json");
+const seed = path.join(__dirname, "..", "lib", "admin-seed.json");
 if (fs.existsSync(seed)) {
   const data = JSON.parse(fs.readFileSync(seed, "utf8"));
   console.log(`Admin seed bundled: ${data.customers?.length || 0} customers.`);

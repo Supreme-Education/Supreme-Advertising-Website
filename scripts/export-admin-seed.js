@@ -21,8 +21,14 @@ const state = {
   },
 };
 
-const out = path.join(__dirname, "..", "data", "admin-seed.json");
-fs.mkdirSync(path.dirname(out), { recursive: true });
-fs.writeFileSync(out, JSON.stringify(state), "utf8");
-console.log(`Wrote ${out}`);
+const json = JSON.stringify(state);
+const paths = [
+  path.join(__dirname, "..", "data", "admin-seed.json"),
+  path.join(__dirname, "..", "lib", "admin-seed.json"),
+];
+for (const out of paths) {
+  fs.mkdirSync(path.dirname(out), { recursive: true });
+  fs.writeFileSync(out, json, "utf8");
+  console.log(`Wrote ${out}`);
+}
 console.log(`  ${customers.length} customers, ${documents.length} documents`);

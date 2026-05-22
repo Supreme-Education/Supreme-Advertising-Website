@@ -19,7 +19,7 @@
 # API: JSON store in /tmp — do not bundle better-sqlite3 (exceeds 50MB upload limit)
 [functions.api]
   node_bundler = "esbuild"
-  included_files = ["lib/company.json", "data/admin-seed.json"]
+  included_files = ["lib/company.json", "lib/admin-seed.json"]
 
 # Auth (no SQLite) — must come before /api/* catch-all
 [[redirects]]
