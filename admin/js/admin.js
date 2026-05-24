@@ -264,8 +264,6 @@
           <tr>
             <th>Name</th>
             <th>Company</th>
-            <th>Email</th>
-            <th>Phone</th>
             <th>Address</th>
             <th></th>
           </tr>
@@ -277,8 +275,6 @@
             <tr data-id="${c.id}">
               <td><strong>${escapeHtml(c.name)}</strong></td>
               <td>${escapeHtml(c.company || "—")}</td>
-              <td>${escapeHtml(c.email || "—")}</td>
-              <td>${escapeHtml(c.phone || "—")}</td>
               <td>${escapeHtml(c.address || "—")}</td>
               <td>
                 <div class="btn-group">
@@ -375,13 +371,9 @@
   function applyCustomerToEditor(customerId) {
     const customer = customersCache.find((c) => String(c.id) === String(customerId));
     if (!customer) return;
-    const company = (customer.company || "").trim();
     $("#client-name").value = customer.name || "";
-    const addr = (customer.address || "").trim();
-    $("#client-address").value =
-      company && !addr.toLowerCase().startsWith(company.toLowerCase())
-        ? `${company}\n${addr}`.trim()
-        : addr;
+    $("#client-company").value = customer.company || "";
+    $("#client-address").value = customer.address || "";
     $("#client-phone").value = customer.phone || "";
     $("#client-email").value = customer.email || "";
   }
@@ -490,6 +482,7 @@
       $("#issue-date").value = doc.issue_date;
       $("#due-date").value = doc.due_date || "";
       $("#client-name").value = doc.client_name;
+      $("#client-company").value = doc.client_company || "";
       $("#client-address").value = doc.client_address || "";
       $("#client-phone").value = doc.client_phone || "";
       $("#client-email").value = doc.client_email || "";
@@ -512,6 +505,7 @@
       $("#issue-date").value = todayISO();
       $("#due-date").value = "";
       $("#client-name").value = "";
+      $("#client-company").value = "";
       $("#client-address").value = "";
       $("#client-phone").value = "";
       $("#client-email").value = "";
@@ -672,6 +666,7 @@
       issue_date: $("#issue-date").value,
       due_date: $("#due-date").value || null,
       client_name: $("#client-name").value.trim(),
+      client_company: $("#client-company").value.trim(),
       client_address: $("#client-address").value.trim(),
       client_phone: $("#client-phone").value.trim(),
       client_email: $("#client-email").value.trim(),

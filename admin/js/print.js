@@ -74,9 +74,8 @@
             <div>
               <h3>Bill to</h3>
               <p><strong>${escapeHtml(doc.client_name)}</strong></p>
+              ${doc.client_company ? `<p>${escapeHtml(doc.client_company)}</p>` : ""}
               ${doc.client_address ? `<p>${escapeHtml(doc.client_address).replace(/\n/g, "<br>")}</p>` : ""}
-              ${doc.client_phone ? `<p>Tel: ${escapeHtml(doc.client_phone)}</p>` : ""}
-              ${doc.client_email ? `<p>${escapeHtml(doc.client_email)}</p>` : ""}
             </div>
           </div>
 
