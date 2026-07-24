@@ -1101,6 +1101,7 @@ body.modal-open {
 
 .contact-fb-icon,
 .contact-wa-icon,
+.contact-ig-icon,
 .contact-li-icon {
   display: block;
   transition: transform 0.2s, color 0.2s;
@@ -1114,6 +1115,10 @@ body.modal-open {
   color: #25d366;
 }
 
+.contact-ig-icon {
+  color: #e4405f;
+}
+
 .contact-li-icon {
   color: #0a66c2;
 }
@@ -1125,6 +1130,11 @@ body.modal-open {
 
 .contact-social-link:hover .contact-wa-icon {
   color: #1da851;
+  transform: scale(1.05);
+}
+
+.contact-social-link:hover .contact-ig-icon {
+  color: #c13584;
   transform: scale(1.05);
 }
 
