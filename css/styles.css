@@ -155,29 +155,6 @@ a:hover {
   color: var(--ink);
 }
 
-.nav-cta,
-.btn-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.55rem 1.1rem;
-  border-radius: 999px;
-  border: 2px solid transparent;
-  background: var(--red);
-  color: var(--white) !important;
-  font-weight: 600;
-  font-size: 0.95rem;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-
-.nav-cta:hover,
-.btn-cta:hover {
-  background: var(--red-dark);
-  color: var(--white) !important;
-}
-
 .nav-dropdown {
   position: relative;
 }
@@ -323,13 +300,6 @@ a:hover {
   color: var(--ink-soft);
   max-width: 34rem;
   margin: 0 0 1.75rem;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
 }
 
 .btn {
@@ -1251,15 +1221,6 @@ body.modal-open {
   .hero-visual {
     order: -1;
     min-height: 280px;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .hero-actions .btn-cta {
-    width: 100%;
   }
 
   .hero-card-secondary {
