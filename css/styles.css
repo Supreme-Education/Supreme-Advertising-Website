@@ -11,6 +11,9 @@
   --radius-lg: 24px;
   --font-body: "DM Sans", system-ui, sans-serif;
   --font-display: "Outfit", system-ui, sans-serif;
+  --logo-navy: #0a1628;
+  --logo-gold: #c9a227;
+  --logo-gold-light: #e8c86a;
   --header-h: 80px;
 }
 
@@ -101,6 +104,56 @@ a:hover {
 .brand:hover .brand-logo {
   box-shadow: 0 4px 16px rgba(26, 22, 18, 0.18);
   transform: translateY(-1px);
+}
+
+.brand-lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.28rem;
+  line-height: 1;
+}
+
+.brand-name-primary {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #5c6778 0%, var(--logo-navy) 38%, #1a2744 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.85)) drop-shadow(0 2px 3px rgba(10, 22, 40, 0.18));
+}
+
+.brand-name-secondary {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: 100%;
+  font-family: var(--font-display);
+  font-size: clamp(0.52rem, 1.2vw, 0.68rem);
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--logo-gold);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.brand-name-line {
+  flex: 1;
+  height: 1px;
+  min-width: 0.75rem;
+  max-width: 1.35rem;
+}
+
+.brand-name-line:first-child {
+  background: linear-gradient(90deg, transparent 0%, var(--logo-gold-light) 35%, var(--logo-gold) 100%);
+}
+
+.brand-name-line:last-child {
+  background: linear-gradient(270deg, transparent 0%, var(--logo-gold-light) 35%, var(--logo-gold) 100%);
 }
 
 .site-nav {
@@ -1220,6 +1273,21 @@ body.modal-open {
   .brand-logo {
     height: 3.25rem;
     width: 3.25rem;
+  }
+
+  .brand-name-primary {
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+  }
+
+  .brand-name-secondary {
+    font-size: 0.5rem;
+    letter-spacing: 0.26em;
+    gap: 0.35rem;
+  }
+
+  .brand-name-line {
+    max-width: 0.85rem;
   }
 
   .nav-toggle {
