@@ -11,7 +11,7 @@
   --radius-lg: 24px;
   --font-body: "DM Sans", system-ui, sans-serif;
   --font-display: "Outfit", system-ui, sans-serif;
-  --font-logo-primary: "Michroma", "Arial Black", sans-serif;
+  --font-logo-primary: "Orbitron", "Bank Gothic", "Arial Black", sans-serif;
   --font-logo-secondary: "Montserrat", "Segoe UI", sans-serif;
   --logo-navy: #050a14;
   --logo-navy-soft: #0a1630;
@@ -130,12 +130,18 @@ a:hover {
 
 .brand-name-primary {
   font-family: var(--font-logo-primary);
-  font-size: clamp(0.88rem, 2vw, 1.28rem);
-  font-weight: 400;
-  letter-spacing: 0.05em;
+  font-size: clamp(0.92rem, 2.1vw, 1.34rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--logo-silver);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+  background: linear-gradient(180deg, #ffffff 0%, #f3f6fa 42%, #d8dee8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter:
+    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.45))
+    drop-shadow(0 2px 2px rgba(0, 0, 0, 0.35))
+    drop-shadow(0 4px 10px rgba(0, 0, 0, 0.28));
   flex-shrink: 0;
 }
 
@@ -1306,8 +1312,8 @@ body.modal-open {
   }
 
   .brand-name-primary {
-    font-size: 0.72rem;
-    letter-spacing: 0.04em;
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
   }
 
   .brand-name-secondary-text {
