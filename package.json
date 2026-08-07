@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "build": "node scripts/netlify-build.js",
+    "build": "node scripts/build-blog.js && node scripts/netlify-build.js",
+    "build:blog": "node scripts/build-blog.js",
     "import-contacts": "node scripts/import-contacts.js",
     "export-seed": "node scripts/export-admin-seed.js"
   },
