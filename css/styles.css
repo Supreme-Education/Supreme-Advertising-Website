@@ -1070,22 +1070,48 @@ body.modal-open {
   margin: 2rem 0 0;
   padding: 0;
   display: grid;
-  gap: 1.25rem;
+  gap: 1rem;
+}
+
+.contact-list--icons .contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.contact-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  color: var(--ink-soft);
+}
+
+.contact-item-icon svg {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.contact-item-icon--whatsapp {
+  color: #25d366;
 }
 
 .contact-list a {
   font-weight: 600;
   text-decoration: none;
   color: var(--ink);
-}
-
-.contact-phone-alt {
-  display: block;
-  margin-top: 0.35rem;
+  line-height: 1.4;
 }
 
 .contact-list a:hover {
   color: var(--red);
+}
+
+.contact-item-icon--whatsapp + a:hover {
+  color: #1da851;
 }
 
 .contact-social-row {
