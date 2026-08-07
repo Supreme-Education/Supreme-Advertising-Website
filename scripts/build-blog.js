@@ -61,10 +61,6 @@ function siteFooter(depth = 1) {
   return `<footer class="site-footer">
     <div class="container footer-inner">
       <p>&copy; <span id="year"></span> Supreme Advertising. All rights reserved.</p>
-      <nav class="footer-links" aria-label="Footer links">
-        <a href="${p}blog/index.html">Blog</a>
-        <a href="${p}admin">Resources</a>
-      </nav>
     </div>
   </footer>
   <script src="${p}js/main.js"></script>`;
