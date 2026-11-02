@@ -3,10 +3,6 @@ node_modules/
 .env
 .env.*
 
-# SQLite admin database is local/server-only (not used on static Netlify deploy)
-data/*.db
-data/*.db-journal
-
 # Dev / tooling
 scripts/
 *.log

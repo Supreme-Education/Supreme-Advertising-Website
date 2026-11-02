@@ -2,23 +2,17 @@
   "name": "supreme-advertising-website",
   "version": "1.0.0",
   "private": true,
-  "description": "Supreme Advertising website with admin invoicing portal",
+  "description": "Supreme Advertising marketing website",
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
     "build": "node scripts/build-blog.js && node scripts/netlify-build.js",
-    "build:blog": "node scripts/build-blog.js",
-    "import-contacts": "node scripts/import-contacts.js",
-    "export-seed": "node scripts/export-admin-seed.js"
+    "build:blog": "node scripts/build-blog.js"
   },
   "engines": {
     "node": ">=18"
   },
   "dependencies": {
-    "@netlify/blobs": "^8.1.0",
-    "better-sqlite3": "^11.7.0",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "serverless-http": "^3.2.0"
+    "express": "^4.21.2"
   }
 }

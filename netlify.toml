@@ -1,4 +1,4 @@
-# Supreme Advertising — static site + Netlify Functions for admin API.
+# Supreme Advertising — static marketing site.
 
 [build]
   command = "npm run build"
@@ -6,59 +6,10 @@
 
 [build.environment]
   NODE_VERSION = "20"
-  NETLIFY = "true"
-
-[functions]
-  directory = "netlify/functions"
-  node_bundler = "esbuild"
-
-# Auth: tiny bundle (no Express, no SQLite)
-[functions.auth]
-  node_bundler = "esbuild"
-
-# API: JSON store in /tmp — do not bundle better-sqlite3 (exceeds 50MB upload limit)
-[functions.api]
-  node_bundler = "esbuild"
-  included_files = ["lib/company.json", "lib/admin-seed.json"]
-
-# Auth (no SQLite) — must come before /api/* catch-all
-[[redirects]]
-  from = "/api/login"
-  to = "/.netlify/functions/auth"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/api/session"
-  to = "/.netlify/functions/auth"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/api/logout"
-  to = "/.netlify/functions/auth"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/api/:splat"
-  status = 200
-  force = true
 
 [[redirects]]
   from = "/blog"
   to = "/blog/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/admin"
-  to = "/admin/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/admin/print.html"
-  to = "/admin/print.html"
   status = 200
 
 [[headers]]

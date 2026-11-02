@@ -1,13 +1,17 @@
-const { createApp } = require("./lib/create-app");
-const { getAdminPassword } = require("./lib/auth-config");
+const express = require("express");
+const path = require("path");
 
-const app = createApp();
+const app = express();
+const root = path.join(__dirname);
+
+app.use(express.static(root));
+
+app.get("/blog", (_req, res) => {
+  res.sendFile(path.join(root, "blog", "index.html"));
+});
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Supreme Advertising site running at http://localhost:${PORT}`);
-  console.log(`Admin portal: http://localhost:${PORT}/admin`);
-  if (getAdminPassword() === "supreme2026") {
-    console.log("Warning: Using default admin password. Set ADMIN_PASSWORD in .env");
-  }
 });
