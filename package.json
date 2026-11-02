@@ -6,8 +6,9 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "build": "node scripts/build-blog.js && node scripts/netlify-build.js",
-    "build:blog": "node scripts/build-blog.js"
+    "build": "node scripts/build-blog.js && node scripts/build-static.js",
+    "build:blog": "node scripts/build-blog.js",
+    "deploy:cloudflare": "npm run build && wrangler deploy"
   },
   "engines": {
     "node": ">=18"
